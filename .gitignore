@@ -1,0 +1,56 @@
+# 1. Python 빌드 및 컴파일 관련
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 2. PyInstaller 빌드 관련
+*.spec
+build/
+dist/
+
+# 3. 로컬 데이터 및 캐시
+*.sqlite
+yfinance_cache.sqlite
+
+# 4. 가상 환경 (Virtual Environment)
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# 5. IDE 및 에디터 관련
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# 6. 로그 및 임시 파일
+*.log
+verify_*.py
+decode_results.py
+trace.txt
+test_results.txt
+
+# 7. 사용자 데이터 및 테스트
+watchlist.json
+tests/
