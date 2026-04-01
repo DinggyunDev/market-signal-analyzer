@@ -1,5 +1,6 @@
-import sys
 import os
+import sys
+import certifi
 import math
 import time
 from datetime import datetime
@@ -243,7 +244,26 @@ def print_summary_table(tickers):
     print(tabulate(table_data, headers=headers, tablefmt="fancy_grid"))
     print("\n  * 상세 분석은 종목을 하나만 입력하세요.")
 
+def configure_ca_bundle():
+    """
+    EXE 실행 환경에서 SSL 인증서 경로(cacert.pem)를 올바르게 설정합니다.
+    yfinance(curl_cffi/libcurl)의 SSL 검증 오류(curl 77)를 해결합니다.
+    """
+    import os
+    import sys
+    try:
+        import certifi
+        if getattr(sys, "frozen", False):
+            ca_path = certifi.where()
+            os.environ["SSL_CERT_FILE"] = ca_path
+            os.environ["CURL_CA_BUNDLE"] = ca_path
+            os.environ["REQUESTS_CA_BUNDLE"] = ca_path
+    except ImportError:
+        pass
+
+
 def main():
+    configure_ca_bundle()
     print_banner()
 
     while True:

@@ -26,11 +26,10 @@ if %errorlevel% neq 0 (
 echo [3/4] Cleaning old build files...
 if exist dist rd /s /q dist
 if exist build rd /s /q build
-if exist MarketAnalyzer.spec del /q MarketAnalyzer.spec
 echo Clean finished.
 
 echo [4/4] Building EXE file (Please wait about 1-2 min)...
-pyinstaller --onefile --noconfirm --name "MarketAnalyzer" main.py
+pyinstaller --noconfirm MarketAnalyzer.spec
 if %errorlevel% neq 0 (
     echo.
     echo [ERROR] Build failed!

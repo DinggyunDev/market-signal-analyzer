@@ -32,7 +32,7 @@ def calculate_all_indicators(data):
         if len(daily) < 35:
             return {"status": "insufficient_data"}
 
-        results = {"status": "ok"}
+        results = {"status": "ok", "ticker": data.get("ticker", "").upper()}
 
         # 1. VWAP (원본 보존 및 제로 디비전 방어)
         results["vwap"] = None

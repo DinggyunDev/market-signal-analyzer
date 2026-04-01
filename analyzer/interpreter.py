@@ -47,8 +47,13 @@ def interpret_indicators(price, indicators):
             labels['vwap_status'] = f"현재가가 VWAP 대비 {gap_pct:+.1f}% 하방 이탈"
             labels['vwap_desc'] = "당일 강한 매도 압력. 추가 하락 경계 필요"
     else:
-        labels['vwap_status'] = "장중 거래 데이터 없음 (휴장 또는 장전)"
-        labels['vwap_desc'] = "실시간 VWAP을 계산할 수 없는 상태"
+        ticker = indicators.get('ticker', '')
+        if ticker.endswith('.KQ'):
+            labels['vwap_status'] = "코스닥 종목은 장 마감이후 데이터가 미제공됩니다."
+            labels['vwap_desc'] = "실시간 VWAP을 계산할 수 없는 상태 (거래소 데이터 지연/미제공)"
+        else:
+            labels['vwap_status'] = "장중 거래 데이터 없음 (휴장 또는 장전)"
+            labels['vwap_desc'] = "실시간 VWAP을 계산할 수 없는 상태"
 
     # ================================================================
     # 2. 거래량 — 배율 기반 5단계 세분화
